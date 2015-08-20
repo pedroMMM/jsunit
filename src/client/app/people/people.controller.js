@@ -5,12 +5,14 @@
         .module('app.people')
         .controller('PeopleController', PeopleController);
 
-    PeopleController.$inject = ['$scope', '$q', 'dataservice', 'logger'];
+    PeopleController.$inject = ['$q', 'dataservice', 'logger'];
 
     /* @ngInject */
-    function PeopleController($scope, $q, dataservice, logger) {
+    function PeopleController($q, dataservice, logger) {
         var vm = this;
         vm.title = 'People';
+
+        vm.people = [];
 
         activate();
 
@@ -27,7 +29,7 @@
         ////////////////
 
         function activate() {
-            logger.info('Activated People View', [$scope, vm]);
+            logger.info('Activated People View');
         }
     }
 })();
