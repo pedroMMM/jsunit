@@ -4,8 +4,8 @@ describe('PeopleController', function () {
     var people = mockData.getMockPeople();
 
     beforeEach(function () {
-        bard.appModule('app.people');
-        bard.inject('$controller', '$log', '$q', '$rootScope', 'dataservice');
+        module('app.people'); //removed bard because it creates a empty $state
+        bard.inject('$controller', '$log', '$q', '$rootScope');
 
         var ds = {
             getPeople: function () {
@@ -33,6 +33,7 @@ describe('PeopleController', function () {
     describe('after activation', function () {
 
         beforeEach(function () {
+            bard.inject('$state');
             $rootScope.$apply();
         });
 
@@ -42,6 +43,14 @@ describe('PeopleController', function () {
 
         it('should have mock people', function () {
             expect(controller.people).to.have.length(people.length);
+        });
+
+        it('selecting a person triggers state change', function () {
+            controller.gotoPerson({
+                id: 3
+            });
+            $rootScope.$apply();
+            expect($state.current.name).to.be.equals('person');
         });
 
     });
