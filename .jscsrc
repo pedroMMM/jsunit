@@ -70,5 +70,5 @@
     "requireCommaBeforeLineBreak": null,
     "requireDotNotation": null,
     "requireMultipleVarDecl": null,
-    "requireParenthesesAroundIIFE": true
+    "requireLineFeedAtFileEnd": null
 }
