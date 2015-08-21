@@ -4,7 +4,7 @@ describe('PeopleController', function () {
     var people = mockData.getMockPeople();
 
     beforeEach(function () {
-        module('app.people'); //removed bard because it creates a empty $state
+        module('app.people', bard.fakeToastr); //removed bard because it creates a empty $state & added bard.fateToastr to stop toastr
         bard.inject('$controller', '$log', '$q', '$rootScope');
 
         var ds = {
@@ -51,6 +51,7 @@ describe('PeopleController', function () {
             });
             $rootScope.$apply();
             expect($state.current.name).to.be.equals('person');
+            expect($state.is('person')).true;
         });
 
     });
